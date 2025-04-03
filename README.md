@@ -1,6 +1,6 @@
 # Tauri + React Template
 
-[![Tests](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/YOUR_USERNAME/YOUR_GIST_ID/raw/tauri-app-tests.json)](https://github.com/YOUR_USERNAME/tauri-app/actions/workflows/test.yml)
+[![Tests](https://github.com/gannonh/tauri-app/actions/workflows/test.yml/badge.svg)](https://github.com/gannonh/tauri-app/actions/workflows/test.yml)
 
 This project serves as a template/starter for Tauri + React applications, featuring a collection of pre-configured tools and packages for modern development.
 

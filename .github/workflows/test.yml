@@ -80,19 +80,4 @@ jobs:
         with:
           name: playwright-report
           path: playwright-report/
-          retention-days: 30
-          
-  # This job will only run if both test jobs succeed
-  update-badge:
-    needs: [unit-tests, e2e-tests]
-    runs-on: ubuntu-latest
-    if: success() && github.ref == 'refs/heads/main'
-    steps:
-      - uses: schneegans/dynamic-badges-action@v1.6.0
-        with:
-          auth: ${{ secrets.GIST_SECRET }}
-          gistID: YOUR_GIST_ID_HERE  # Replace with your Gist ID
-          filename: tauri-app-tests.json
-          label: tests
-          message: passing
-          color: green 
+          retention-days: 30 
