@@ -12,8 +12,8 @@ This project serves as a template/starter for Tauri + React applications, featur
 - Vite for fast development and bundling
 - Complete testing setup with Vitest (unit/component) and Playwright (e2e)
 - GitHub Actions CI workflow for automated testing
-- TailwindCSS and shadcn/ui for styling
-- Dark mode support
+- TailwindCSS and shadcn/ui components with theme support
+- Dark/light mode toggle
 
 ## Testing
 
@@ -25,20 +25,22 @@ The project follows a clean, maintainable test structure:
 project/
 ├── src/
 │   ├── components/
-│   │   ├── Button.tsx
+│   │   ├── ui/
+│   │   │   └── button.tsx
 │   │   ├── __tests__/               # Unit tests alongside components
 │   │   │   └── Button.test.tsx
-│   ├── test/
-│   │   └── setup.ts                 # Global test setup for Vitest
-├── e2e/
-│   ├── flows/                       # End-to-end tests in their own directory
-│   │   └── app.spec.ts
+├── test/
+│   ├── vitest.setup.ts              # Global test setup for Vitest
+│   ├── globals.d.ts                 # TypeScript declarations for testing
+│   ├── util/                        # Shared test utilities
+│   └── e2e/                         # End-to-end tests
+│       └── app.spec.ts
 ```
 
 This organization provides several benefits:
 
-- Unit tests stay close to the code they're testing (co-location)
-- E2E tests are separated due to their cross-component testing nature
+- Unit tests stay close to the components they're testing (co-location)
+- E2E tests and test configuration are separated in a dedicated test directory
 - Consistent naming conventions: `.test.tsx` for unit tests, `.spec.ts` for E2E tests
 
 ### Unit and Component Testing
@@ -86,46 +88,35 @@ npx playwright test --headed
 npm run test:all
 ```
 
-### Writing Tests
+### Linting
 
-#### Unit Test Example
+TypeScript is configured to check for type errors without emitting files:
 
-```tsx
-// src/components/__tests__/ComponentName.test.tsx
-import { describe, it, expect } from 'vitest';
-import { render, screen } from '@testing-library/react';
-import { ComponentName } from '../../components/ComponentName';
-
-describe('ComponentName', () => {
-  it('renders correctly', () => {
-    render(<ComponentName data-testid="component">Test</ComponentName>);
-    expect(screen.getByTestId('component')).toBeInTheDocument();
-  });
-});
-```
-
-#### E2E Test Example
-
-```tsx
-// e2e/flows/feature.spec.ts
-import { test, expect } from '@playwright/test';
-
-test('user can interact with feature', async ({ page }) => {
-  await page.goto('/');
-  await page.getByTestId('feature-button').click();
-  await expect(page.getByText('Feature activated')).toBeVisible();
-});
+```bash
+# Check for type errors
+npm run lint
 ```
 
 ### Continuous Integration
 
 This template includes a GitHub Actions workflow that:
 
-- Runs on push to main and pull requests
-- Executes unit tests and e2e tests in parallel
+- Runs on push to any branch and pull requests
+- Executes unit tests and e2e tests in parallel jobs
 - Sets up Tauri dependencies automatically
+- Handles platform-specific build requirements
 - Caches dependencies for faster runs
 - Uploads test results as artifacts
+
+The workflow has been configured to handle common CI issues with native dependencies like Rollup and LightningCSS on Linux environments.
+
+## UI Components
+
+This project uses shadcn/ui components with TailwindCSS for styling. The components are customizable and themeable.
+
+### Theme Support
+
+The application includes a dark/light mode toggle implemented with shadcn/ui's dropdown menu component. The theme preference is stored in localStorage and persists between sessions.
 
 ## Development
 
@@ -133,11 +124,17 @@ This template includes a GitHub Actions workflow that:
 # Install dependencies
 npm install
 
-# Start development server
-npm run dev
+# Development
+npm run tauri dev       # Run your app in development mode with Tauri features
+# OR
+npm run dev             # Run Vite dev server only (without Tauri)
 
-# Build for production
-npm run build
+# Building
+npm run tauri build     # Build for production and generate installers
+
+# Utility
+npm run preview         # Preview the Vite production build
+npm run lint            # Check for TypeScript errors
 ```
 
 ## Adding to the Template
