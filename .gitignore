@@ -28,3 +28,8 @@ coverage/
 playwright-report/
 test-results/
 .vitest-cache/
+
+# cursor
+.cursor/
+.specstory/
+

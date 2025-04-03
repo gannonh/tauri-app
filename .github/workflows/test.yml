@@ -47,8 +47,12 @@ jobs:
           node-version: 20
           cache: 'npm'
           
-      - name: Install dependencies
-        run: npm ci --legacy-peer-deps
+      - name: Clean install dependencies
+        run: |
+          rm -rf node_modules
+          rm -f package-lock.json
+          npm install
+          npm install @rollup/rollup-linux-x64-gnu lightningcss-linux-x64-gnu --no-save
         
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
