@@ -2,18 +2,25 @@ import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import { invoke } from "@tauri-apps/api/core";
 import "./App.css";
+import { Button } from "./components/Button";
 
 function App() {
   const [greetMsg, setGreetMsg] = useState("");
   const [name, setName] = useState("");
+  const [clicked, setClicked] = useState(false);
 
   async function greet() {
     // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
     setGreetMsg(await invoke("greet", { name }));
   }
 
+  const handleButtonClick = () => {
+    setClicked(true);
+    setTimeout(() => setClicked(false), 2000);
+  };
+
   return (
-    <main className="container">
+    <main className="container" data-testid="app-container">
       <h1>Welcome to Tauri + React</h1>
 
       <div className="row">
@@ -44,6 +51,16 @@ function App() {
         <button type="submit">Greet</button>
       </form>
       <p>{greetMsg}</p>
+
+      <div className="row" style={{ marginTop: "2rem" }}>
+        <Button onClick={handleButtonClick} variant="primary">
+          Test Button
+        </Button>
+        <Button variant="secondary" style={{ marginLeft: "1rem" }}>
+          Secondary Button
+        </Button>
+      </div>
+      {clicked && <p>Clicked!</p>}
     </main>
   );
 }
