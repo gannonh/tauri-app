@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { Button } from './Button';
+import { Button } from "@/components/ui/button"
 
 describe('Button', () => {
   it('renders correctly', () => {
@@ -18,7 +18,7 @@ describe('Button', () => {
   });
 
   it('applies the correct class for primary variant', () => {
-    render(<Button variant="primary">Primary</Button>);
+    render(<Button variant="default">Primary</Button>);
     const button = screen.getByTestId('button');
     expect(button.className).toContain('bg-blue-500');
   });

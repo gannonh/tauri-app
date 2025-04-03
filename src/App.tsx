@@ -2,8 +2,7 @@ import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import { invoke } from "@tauri-apps/api/core";
 import "./App.css";
-import { Button } from "./components/Button";
-
+import { Button } from "@/components/ui/button"
 function App() {
   const [greetMsg, setGreetMsg] = useState("");
   const [name, setName] = useState("");
@@ -53,8 +52,8 @@ function App() {
       <p>{greetMsg}</p>
 
       <div className="row" style={{ marginTop: "2rem" }}>
-        <Button onClick={handleButtonClick} variant="primary">
-          Test Button
+        <Button onClick={handleButtonClick} variant="default">
+          Test Buttons
         </Button>
         <Button variant="secondary" style={{ marginLeft: "1rem" }}>
           Secondary Button
