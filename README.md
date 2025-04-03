@@ -1,5 +1,7 @@
 # Tauri + React Template
 
+[![Tests](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/YOUR_USERNAME/YOUR_GIST_ID/raw/tauri-app-tests.json)](https://github.com/YOUR_USERNAME/tauri-app/actions/workflows/test.yml)
+
 This project serves as a template/starter for Tauri + React applications, featuring a collection of pre-configured tools and packages for modern development.
 
 ## Features
@@ -9,6 +11,7 @@ This project serves as a template/starter for Tauri + React applications, featur
 - TypeScript for type safety
 - Vite for fast development and bundling
 - Complete testing setup with Vitest (unit/component) and Playwright (e2e)
+- GitHub Actions CI workflow for automated testing
 
 ## Testing Setup
 
@@ -47,7 +50,20 @@ To run e2e tests:
 ```bash
 # Run e2e tests
 npm run test:e2e
+
+# Run all tests (unit and e2e)
+npm run test:all
 ```
+
+### Continuous Integration
+
+This template includes a GitHub Actions workflow that:
+
+- Runs on push to main and pull requests
+- Executes unit tests and e2e tests in parallel
+- Sets up Tauri dependencies automatically
+- Caches dependencies for faster runs
+- Uploads test results as artifacts
 
 ## Development
 

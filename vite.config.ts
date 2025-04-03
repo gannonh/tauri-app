@@ -1,7 +1,7 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
-// @ts-expect-error process is a nodejs global
+// For Tauri development
 const host = process.env.TAURI_DEV_HOST;
 
 // https://vitejs.dev/config/
@@ -36,5 +36,17 @@ export default defineConfig(async () => ({
     setupFiles: ['./src/test/setup.ts'],
     css: true,
     exclude: ['**/node_modules/**', '**/e2e/**', '**/playwright.config.ts'],
+    coverage: {
+      provider: 'v8',
+      reporter: ['text', 'json', 'html'],
+      exclude: [
+        '**/node_modules/**', 
+        '**/*.d.ts', 
+        '**/*.config.ts', 
+        '**/test/**',
+        '**/src-tauri/target/**',
+        '**/__global-api-script.js'
+      ],
+    }
   },
 }));
