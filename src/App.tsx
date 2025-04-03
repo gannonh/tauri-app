@@ -8,6 +8,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { ModeToggle } from "@/components/mode-toggle";
 
 // Define the form schema with Zod
 const formSchema = z.object({
@@ -40,6 +41,9 @@ function App() {
 
   return (
     <main className="flex flex-col items-center justify-center min-h-screen p-6 bg-background" data-testid="app-container">
+      <div className="absolute top-4 right-4">
+        <ModeToggle />
+      </div>
       <div className="w-full max-w-md space-y-6">
         <h1 className="text-3xl font-bold text-center mb-6">Welcome to Tauri + React</h1>
 
