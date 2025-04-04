@@ -33,3 +33,4 @@ test-results/
 .cursor/
 .specstory/
 
+playwright-report/
