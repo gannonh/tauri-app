@@ -2,7 +2,7 @@
 
 [![Tests](https://github.com/gannonh/tauri-app/actions/workflows/test.yml/badge.svg)](https://github.com/gannonh/tauri-app/actions/workflows/test.yml)
 
-This project serves as a template/starter for Tauri + React applications, featuring a collection of pre-configured tools and packages for modern development.
+Starter template for Tauri + React applications, featuring a collection of pre-configured tools and packages for modern development.
 
 ## Features
 
